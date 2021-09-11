@@ -1,7 +1,7 @@
 import random
 import time
 
-suits = ("Spades ♠", "Clubs ♣", "Hearts ♥", "Diamonds ♦")
+suits = ("♠", "♣", "♥", "♦")
 ranks = (
     "1",
     "2",
@@ -36,13 +36,49 @@ values = {
 
 playing = True
 
-# CLASS DEFINTIONS:
-
-
 class Card:
     def __init__(self, suit, rank):
         self.suit = suit
         self.rank = rank
 
     def __str__(self):
-        return self.rank + " of " + self.suit
+        return self.rank + self.suit
+    
+class Deck:
+    def __init__(self):
+        self.deck = [] 
+              
+        for suit in suits:
+            for rank in ranks:
+                self.deck.append(Card(suit, rank))
+                
+    def shuffle(self):
+        return random.shuffle(self.deck)
+    
+    def dealCards(self):
+        one_card = self.deck.pop()
+        return self.deck.pop()
+    
+class Hand:
+    def __init__(self):
+        self.hand = []
+        self.value = 0
+        self.aces = 0
+        
+    def addCard(self, card):
+        self.hand.append(card)
+        self.value += values[card.rank]
+        
+        if card.rank == "A":
+            self.aces += 1
+    
+    # be dealt two random cards
+    # hold the values
+    
+    
+
+                
+        
+        
+            
+            
